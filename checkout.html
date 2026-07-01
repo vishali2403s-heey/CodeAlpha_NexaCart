@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - NexaCart</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Checkout</h2>
+  <input type="text" id="customerName" placeholder="Full Name">
+  <input type="text" id="phone" placeholder="Phone Number">
+  <textarea id="address" placeholder="Shipping Address"></textarea>
+  <select id="paymentMethod">
+    <option value="COD">Cash on Delivery</option>
+    <option value="Card">Card</option>
+    <option value="UPI">UPI</option>
+  </select>
+  <button onclick="placeOrder()">Place Order</button>
+  <p id="orderMsg"></p>
+</div>
+
+<script src="js/cart.js"></script>
+</body>
+</html>

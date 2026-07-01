@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - NexaCart</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="page-header">
+  <h1>My Wishlist</h1>
+  <a href="index.html" class="back-link">← Home</a>
+</header>
+
+<div id="wishlist" class="products"></div>
+
+<script>
+  const token = localStorage.getItem('token');
+  async function loadWishlist() {
+    const response = await fetch('http://localhost:5000/api/wishlist', { headers: token ? { Authorization: `Bearer ${token}` } : {} });
+    const items = await response.json();
+    const container = document.getElementById('wishlist');
+
+    if (!items.length) {
+      container.innerHTML = '<p>Your wishlist is empty.</p>';
+      return;
+    }
+
+    container.innerHTML = items.map((item) => `
+      <div class="card">
+        <h2>${item.name}</h2>
+        <p>₹${item.price}</p>
+      </div>
+    `).join('');
+  }
+
+  loadWishlist();
+</script>
+</body>
+</html>

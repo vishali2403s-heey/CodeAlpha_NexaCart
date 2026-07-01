@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - NexaCart</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+  <h2>Profile</h2>
+  <p id="profileInfo">Loading...</p>
+  <input id="name" placeholder="Full name">
+  <input id="email" placeholder="Email">
+  <input id="phone" placeholder="Phone">
+  <textarea id="address" placeholder="Address"></textarea>
+  <button onclick="updateProfile()">Update profile</button>
+  <input id="currentPassword" type="password" placeholder="Current password">
+  <input id="newPassword" type="password" placeholder="New password">
+  <button onclick="changePassword()">Change password</button>
+  <button onclick="logoutUser()">Logout</button>
+</div>
+<script>
+  const API = 'http://localhost:5000/api';
+  const token = localStorage.getItem('token');
+
+  function logoutUser() {
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+  }
+
+  async function loadProfile() {
+    if (!token) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const response = await fetch(`${API}/me`, { headers: { Authorization: `Bearer ${token}` } });
+    const data = await response.json();
+    const user = data.user || {};
+    document.getElementById('profileInfo').innerText = `Welcome ${user.name || 'guest'}`;
+    document.getElementById('name').value = user.name || '';
+    document.getElementById('email').value = user.email || '';
+    document.getElementById('phone').value = user.phone || '';
+    document.getElementById('address').value = user.address || '';
+  }
+
+  async function updateProfile() {
+    const payload = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      address: document.getElementById('address').value
+    };
+    const response = await fetch(`${API}/profile`, { method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify(payload) });
+    const data = await response.json();
+    alert(data.message || 'Updated');
+  }
+
+  async function changePassword() {
+    const payload = {
+      currentPassword: document.getElementById('currentPassword').value,
+      newPassword: document.getElementById('newPassword').value
+    };
+    const response = await fetch(`${API}/change-password`, { method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify(payload) });
+    const data = await response.json();
+    alert(data.message || 'Password updated');
+  }
+
+  loadProfile();
+</script>
+</body>
+</html>
