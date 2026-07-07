@@ -182,8 +182,13 @@ http://localhost:5000
 ---
 
 ## 📷 Screenshots
-<img width="956" height="887" alt="image" src="https://github.com/user-attachments/assets/15b1fb1c-144e-4355-9323-94741b71663e" />
-<img width="957" height="286" alt="image" src="https://github.com/user-attachments/assets/04db3774-2f09-45d0-a8b0-a76dfd7dc708" />
+<img width="1527" height="846" alt="image" src="https://github.com/user-attachments/assets/e9c2df68-ddd8-4a19-a0db-ff727bed9773" />
+<img width="1192" height="682" alt="image" src="https://github.com/user-attachments/assets/c9aaf030-1cc5-4dc6-a635-056f35701cb6" />
+<img width="832" height="606" alt="image" src="https://github.com/user-attachments/assets/cf50e733-5b42-4bbd-bd58-8ea3863d937a" />
+<img width="1847" height="742" alt="image" src="https://github.com/user-attachments/assets/6a166386-1784-4f87-beb7-88b3d774a643" />
+
+
+
 
 - Home Page
 - Login Page
